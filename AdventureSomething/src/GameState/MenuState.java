@@ -1,5 +1,7 @@
 package GameState;
 
+import Audio.AudioPlayer;
+
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
@@ -21,13 +23,15 @@ public class MenuState extends GameState {
 	
 	private Font font;
 	
+	private AudioPlayer bgMusic;
+	
 	public MenuState(GameStateManager gsm)
 	{
 		this.gsm = gsm;
 		try
 		{
 			bg = new Background("/Graphics/Backgrounds/Castle3.jpg", 1);
-			bg.setVector(0.2, 0);
+			bg.setVector(0, 0);
 			
 			titleColor = new Color(128,0,0);
 			titleFont = new Font("Century Gothic", Font.PLAIN, 28);
@@ -39,7 +43,10 @@ public class MenuState extends GameState {
 		}
 	}
 	
-	public void init() {}
+	public void init() {		
+		bgMusic = new AudioPlayer("/Music/Menu1-1.mp3");
+		bgMusic.play();
+		}
 	public void update() {
 		bg.update();
 	}
