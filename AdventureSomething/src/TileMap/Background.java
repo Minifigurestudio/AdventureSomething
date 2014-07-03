@@ -43,7 +43,7 @@ public class Background {
 	public void update()
 	{
 		x += dx;
-		y += dy;
+		y += dy; 
 	}
 	public void draw(Graphics2D g)
 	{

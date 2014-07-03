@@ -6,8 +6,8 @@ import java.awt.event.*;
 import javax.swing.JPanel;
 import GameState.GameStateManager;
 
-public class GamePanel extends JPanel 
-implements Runnable, KeyListener{
+@SuppressWarnings("serial")
+public class GamePanel extends JPanel implements Runnable, KeyListener{
 	
 	//deminsions
 	public static final int WIDTH = 761;
@@ -31,6 +31,8 @@ implements Runnable, KeyListener{
 	{
 		super();
 		setPreferredSize(new Dimension(WIDTH, HEIGHT));
+		setFocusable(true);
+		requestFocus();
 	}
 	
 	public void addNotify()
@@ -55,11 +57,12 @@ implements Runnable, KeyListener{
 	
 	public void run()
 	{
+		init();
+		
 		long start;
 		long elapsed;
 		long wait;
 		
-		init();
 		//game loop
 		while(running)
 		{
@@ -98,7 +101,9 @@ implements Runnable, KeyListener{
 		g2.dispose();
 	}
 	
-	public void keyTyped(KeyEvent key) {}
+	public void keyTyped(KeyEvent key) {
+		
+	}
 	public void keyPressed(KeyEvent key) {
 		gsm.keyPressed(key.getKeyCode());
 	}

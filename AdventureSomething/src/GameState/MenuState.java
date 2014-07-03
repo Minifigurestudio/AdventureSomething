@@ -27,7 +27,7 @@ public class MenuState extends GameState {
 		try
 		{
 			bg = new Background("/Graphics/Backgrounds/Castle3.jpg", 1);
-			bg.setVector(0, 0);
+			bg.setVector(0.2, 0);
 			
 			titleColor = new Color(128,0,0);
 			titleFont = new Font("Century Gothic", Font.PLAIN, 28);
@@ -87,7 +87,7 @@ public class MenuState extends GameState {
 		{
 			select();
 		}
-		if(k == KeyEvent.VK_UP)
+		else if(k == KeyEvent.VK_UP)
 		{
 			currentChoice--;
 			if(currentChoice == -1)
@@ -95,7 +95,7 @@ public class MenuState extends GameState {
 				currentChoice = options.length - 1;
 			}
 		}
-		if(k == KeyEvent.VK_DOWN)
+		else if(k == KeyEvent.VK_DOWN)
 		{
 			currentChoice++;
 			if(currentChoice == options.length)
