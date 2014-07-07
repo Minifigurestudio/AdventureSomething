@@ -1,7 +1,5 @@
 package GameState;
 
-import java.util.ArrayList;
-
 public class GameStateManager {
 	
 	private GameState[] gameStates;

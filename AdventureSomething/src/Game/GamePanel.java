@@ -9,7 +9,7 @@ import GameState.GameStateManager;
 @SuppressWarnings("serial")
 public class GamePanel extends JPanel implements Runnable, KeyListener{
 	
-	//deminsions
+	//dimensions
 	public static final int WIDTH = 761;
 	public static final int HEIGHT = 604;
 	public static final int SCALE = 2;
