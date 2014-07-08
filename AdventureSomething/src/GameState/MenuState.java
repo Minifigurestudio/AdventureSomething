@@ -23,8 +23,6 @@ public class MenuState extends GameState {
 	
 	private Font font;
 	
-	private AudioPlayer bgMusic;
-	
 	public MenuState(GameStateManager gsm)
 	{
 		this.gsm = gsm;
@@ -44,8 +42,6 @@ public class MenuState extends GameState {
 	}
 	
 	public void init() {		
-		bgMusic = new AudioPlayer("/Music/Menu1-1.mp3");
-		bgMusic.play();
 		}
 	public void update() {
 		bg.update();
