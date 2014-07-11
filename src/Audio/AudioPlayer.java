@@ -38,10 +38,12 @@ public class AudioPlayer {
 		
 	}
 	
-	public void play() {
+	public void play(float Volume) {
 		if(clip == null) return;
 		stop();
 		clip.setFramePosition(0);
+		FloatControl gainControl = (FloatControl) clip.getControl(FloatControl.Type.MASTER_GAIN);
+		gainControl.setValue(Volume);
 		clip.start();
 	}
 	

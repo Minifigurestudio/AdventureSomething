@@ -10,7 +10,6 @@ import GameState.GameStateManager;
 
 @SuppressWarnings("serial")
 public class GamePanel extends JPanel implements Runnable, KeyListener{
-	
 	//dimensions
 	public static final int WIDTH = 1008;
 	public static final int HEIGHT = 608;
@@ -59,7 +58,7 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
 		running = true;
 		gsm = new GameStateManager();
 		bgMusic = new AudioPlayer("/Music/Menu1-1.mp3");
-		bgMusic.play();
+		bgMusic.play(0.0f);
 	}
 	
 	public void run()
@@ -69,6 +68,8 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
 		long start;
 		long elapsed;
 		long wait;
+		
+		
 		
 		//game loop
 		while(running)

@@ -5,6 +5,7 @@ import Game.GamePanel;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import javax.swing.JButton;
 
 import TileMap.Background;
 
@@ -12,11 +13,21 @@ public class MenuState extends GameState {
 
 	private Background bg;
 	
+	float Volume = 0.0f;
+	
+	private boolean o1 = true;
+	private boolean o2 = false;
+	
 	private int currentChoice = 0;
 	private String[] options = {
 			"Start",
 			"Options",
 			"Quit"
+	};
+	private String[] options2 = {
+			"Audio",
+			"Controls",
+			"Back"
 	};
 	
 	private Color titleColor;
@@ -58,32 +69,71 @@ public class MenuState extends GameState {
 		g.drawString("AdventureSomething", 225, 50);
 		//draw menu options
 		g.setFont(font);
-		for(int i = 0; i < options.length; i++)
+		if(o1 == true){
+			for(int i = 0; i < options.length; i++)
+			{
+				if(i == currentChoice)
+				{
+					g.setColor(Color.WHITE);
+				}
+				else
+				{
+					g.setColor(Color.RED);
+				}
+				g.drawString(options[i], 380, 302 + i * 23);
+			}
+		}
+		else if(o2 == true)
 		{
-			if(i == currentChoice)
+			for(int i = 0; i < options2.length; i++)
 			{
-				g.setColor(Color.WHITE);
+				if(i == currentChoice)
+				{
+					g.setColor(Color.WHITE);
+				}
+				else
+				{
+					g.setColor(Color.RED);
+				}
+				g.drawString(options2[i], 380, 302 + i * 23);
 			}
-			else
-			{
-				g.setColor(Color.RED);
-			}
-			g.drawString(options[i], 380, 302 + i * 23);
 		}
 	}
 	private void select()
 	{
-		if(currentChoice == 0)
+		if(o1 == true)
 		{
-			// start
+			if(currentChoice == 0)
+			{
+				// start
+			}
+			if(currentChoice == 1)
+			{
+				currentChoice = 0;
+				o1 = false;
+				o2 = true;
+			}
+			if(currentChoice == 2)
+			{
+				System.exit(0);
+			}
 		}
-		if(currentChoice == 1)
+		else if(o2 == true)
 		{
-			// help
-		}
-		if(currentChoice == 2)
-		{
-			System.exit(0);
+			if(currentChoice == 0)
+			{
+				// audio
+			}
+			if(currentChoice == 1)
+			{
+				// controls
+			}
+			if(currentChoice == 2)
+			{
+				currentChoice = 0;
+				o1 = true;
+				o2 = false;
+			}
 		}
 	}
 	public void keyPressed(int k) {
@@ -94,20 +144,39 @@ public class MenuState extends GameState {
 		else if(k == KeyEvent.VK_UP)
 		{
 			currentChoice--;
-			if(currentChoice == -1)
+			if(o1 == true)
 			{
-				currentChoice = options.length - 1;
+				if(currentChoice < 0)
+				{
+					currentChoice = options.length - 1;
+				}
+			}
+			else if(o2 == true)
+			{
+				if(currentChoice < 0)
+				{
+					currentChoice = options2.length - 1;
+				}
 			}
 		}
 		else if(k == KeyEvent.VK_DOWN)
 		{
 			currentChoice++;
-			if(currentChoice == options.length)
+			if(o1 == true)
 			{
-				currentChoice = 0;
+				if(currentChoice > options.length - 1)
+				{
+					currentChoice = 0;
+				}
+			}
+			else if(o2 == true)
+			{
+				if(currentChoice > options2.length - 1)
+				{
+					currentChoice = 0;
+				}
 			}
 		}
 	}
 	public void keyReleased(int k) {}
-	
 }
