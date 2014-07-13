@@ -2,6 +2,8 @@ package GameState;
 
 public class GameStateManager {
 	
+	public float Volume = -0.0f;
+	
 	private GameState[] gameStates;
 	private int currentState;
 	
@@ -21,6 +23,9 @@ public class GameStateManager {
 		if(state == MENUSTATE)
 			gameStates[state] = new MenuState(this);
 		
+		//INIT
+		gameStates[currentState].init();
+		
 	}
 	
 	private void unloadState(int state) {
@@ -31,7 +36,6 @@ public class GameStateManager {
 		unloadState(currentState);
 		currentState = state;
 		loadState(currentState);
-		//gameStates[currentState].init();
 	}
 	
 	public void update()

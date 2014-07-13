@@ -4,8 +4,6 @@ import java.awt.image.BufferedImage;
 import java.awt.event.*;
 
 import javax.swing.JPanel;
-
-import Audio.AudioPlayer;
 import GameState.GameStateManager;
 
 @SuppressWarnings("serial")
@@ -24,9 +22,6 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
 	// image
 	private BufferedImage image;
 	private Graphics2D g;
-	
-	// music
-	private AudioPlayer bgMusic;
 	
 	//game state manager
 	private GameStateManager gsm;
@@ -57,8 +52,6 @@ public class GamePanel extends JPanel implements Runnable, KeyListener{
 		g = (Graphics2D) image.getGraphics();
 		running = true;
 		gsm = new GameStateManager();
-		bgMusic = new AudioPlayer("/Music/Menu1-1.mp3");
-		bgMusic.play(0.0f);
 	}
 	
 	public void run()

@@ -5,18 +5,22 @@ import Game.GamePanel;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
-import javax.swing.JButton;
 
 import TileMap.Background;
 
 public class MenuState extends GameState {
-
+	
+	//music
+	private AudioPlayer bgMusic = new AudioPlayer("/Music/Menu1-1.mp3");
+	//Volume percentage visualization
+	int x1 = 50;
+	
+	
 	private Background bg;
 	
-	float Volume = 0.0f;
-	
-	private boolean o1 = true;
-	private boolean o2 = false;
+	private boolean o1 = true; //main menu
+	private boolean o2 = false; //options menu
+	private boolean a1 = false; //audio menu
 	
 	private int currentChoice = 0;
 	private String[] options = {
@@ -53,7 +57,8 @@ public class MenuState extends GameState {
 		}
 	}
 	
-	public void init() {		
+	public void init() {
+			bgMusic.play(gsm.Volume);
 		}
 	public void update() {
 		bg.update();
@@ -83,6 +88,7 @@ public class MenuState extends GameState {
 				g.drawString(options[i], 380, 302 + i * 23);
 			}
 		}
+		//Draw options menu
 		else if(o2 == true)
 		{
 			for(int i = 0; i < options2.length; i++)
@@ -96,11 +102,16 @@ public class MenuState extends GameState {
 					g.setColor(Color.RED);
 				}
 				g.drawString(options2[i], 380, 302 + i * 23);
+				if(i == 0)
+				{
+					g.drawString((((double)x1/50) * 100) + "%", 500, 302 + i * 23);
+				}
 			}
 		}
 	}
 	private void select()
 	{
+		//Options1 Choices
 		if(o1 == true)
 		{
 			if(currentChoice == 0)
@@ -109,12 +120,14 @@ public class MenuState extends GameState {
 			}
 			if(currentChoice == 1)
 			{
+				//Enter options menu
 				currentChoice = 0;
 				o1 = false;
 				o2 = true;
 			}
 			if(currentChoice == 2)
 			{
+				//Close game
 				System.exit(0);
 			}
 		}
@@ -122,17 +135,19 @@ public class MenuState extends GameState {
 		{
 			if(currentChoice == 0)
 			{
-				// audio
+				// Change Audio
 			}
 			if(currentChoice == 1)
 			{
-				// controls
+				// Adjust Controls
 			}
 			if(currentChoice == 2)
 			{
+				//Go Back
 				currentChoice = 0;
 				o1 = true;
 				o2 = false;
+				bgMusic.play(gsm.Volume);
 			}
 		}
 	}
@@ -174,6 +189,29 @@ public class MenuState extends GameState {
 				if(currentChoice > options2.length - 1)
 				{
 					currentChoice = 0;
+				}
+			}
+		}
+		//Adjust Audio
+		else if(k == KeyEvent.VK_LEFT)
+		{
+			if(o2 == true & currentChoice == 0)
+			{
+				if(gsm.Volume != -50.0f)
+				{
+					gsm.Volume -= 1.0f;
+					x1 = x1 - 1;
+				}
+			}
+		}
+		else if(k == KeyEvent.VK_RIGHT)
+		{
+			if(o2 == true & currentChoice == 0)
+			{
+				if(gsm.Volume != 0.0f)
+				{
+					gsm.Volume += 1.0f;
+					x1 = x1 + 1;
 				}
 			}
 		}
