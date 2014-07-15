@@ -13,7 +13,7 @@ public class MenuState extends GameState {
 	//music
 	private AudioPlayer bgMusic = new AudioPlayer("/Music/Menu1-1.mp3");
 	//Volume percentage visualization
-	int x1 = 50;
+	double x1 = 50;
 	
 	
 	private Background bg;
@@ -104,7 +104,7 @@ public class MenuState extends GameState {
 				g.drawString(options2[i], 380, 302 + i * 23);
 				if(i == 0)
 				{
-					g.drawString((((double)x1/50) * 100) + "%", 500, 302 + i * 23);
+					g.drawString(((double)(x1/50) * 100) + "%", 500, 302 + i * 23);
 				}
 			}
 		}

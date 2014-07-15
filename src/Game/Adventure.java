@@ -14,7 +14,7 @@ class Adventure
 		
 		
 		window.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		window.setResizable(true);
+		window.setResizable(false);
 		window.pack();
 		window.setVisible(true);
 	}
