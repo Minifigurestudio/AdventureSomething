@@ -19,6 +19,7 @@ public class MenuState extends GameState {
 	private Background bg;
 	
 	private boolean o1 = true; //main menu
+	private boolean s1 = false; //start menu
 	private boolean o2 = false; //options menu
 	private boolean a1 = false; //audio menu
 	
@@ -31,6 +32,11 @@ public class MenuState extends GameState {
 	private String[] options2 = {
 			"Audio",
 			"Controls",
+			"Back"
+	};
+	private String[] start1 = {
+			"New Game",
+			"Load Game",
 			"Back"
 	};
 	
@@ -104,19 +110,36 @@ public class MenuState extends GameState {
 				g.drawString(options2[i], 380, 302 + i * 23);
 				if(i == 0)
 				{
-					g.drawString(((double)(x1/50) * 100) + "%", 500, 302 + i * 23);
+					g.drawString(((float)Math.round((x1/50) * 100)) + "%", 500, 302 + i * 23);
 				}
+			}
+		}
+		else if(s1 = true)
+		{
+			for(int i = 0; i < start1.length; i++)
+			{
+				if(i == currentChoice)
+				{
+					g.setColor(Color.WHITE);
+				}
+				else
+				{
+					g.setColor(Color.RED);
+				}
+				g.drawString(start1[i], 380, 302 + i * 23);
 			}
 		}
 	}
 	private void select()
 	{
-		//Options1 Choices
+		//OPTION 1 CHOICES
 		if(o1 == true)
 		{
 			if(currentChoice == 0)
 			{
-				// start
+				s1 = true;
+				o1 = false;
+				o2 = false;
 			}
 			if(currentChoice == 1)
 			{
@@ -131,6 +154,7 @@ public class MenuState extends GameState {
 				System.exit(0);
 			}
 		}
+		//OPTIONS 2 CHOICES
 		else if(o2 == true)
 		{
 			if(currentChoice == 0)
@@ -148,6 +172,26 @@ public class MenuState extends GameState {
 				o1 = true;
 				o2 = false;
 				bgMusic.play(gsm.Volume);
+			}
+		}
+		//STAT CHOICES
+		else if(s1 == true)
+		{
+			if(currentChoice == 0)
+			{
+				// NEW GAMES
+			}
+			if(currentChoice == 1)
+			{
+				//LOAD GAME
+			}
+			if(currentChoice == 2)
+			{
+				//Go Back
+				currentChoice = 0;
+				o1 = true;
+				o2 = false;
+				s1 = false;
 			}
 		}
 	}
