@@ -1,5 +1,7 @@
 package GameState;
 
+import java.util.ArrayList;
+
 public class GameStateManager {
 	
 	public float Volume = -0.0f;
@@ -22,10 +24,8 @@ public class GameStateManager {
 	private void loadState(int state) {
 		if(state == MENUSTATE)
 			gameStates[state] = new MenuState(this);
-		
-		//INIT
-		gameStates[currentState].init();
-		
+		if(state == LEVEL1STATE)
+			gameStates[state] = new Level1State(this);
 	}
 	
 	private void unloadState(int state) {
@@ -37,22 +37,26 @@ public class GameStateManager {
 		currentState = state;
 		loadState(currentState);
 	}
+// what I added
+	public boolean updatingState; {
+		  if(gsm.updatingState != true) {
+			  }
+	}
+
 	
-	public void update()
-	{
+	public void update() {
 		gameStates[currentState].update();
 	}
 	
-	public void draw(java.awt.Graphics2D g)
-	{
+	public void draw(java.awt.Graphics2D g) {
 		gameStates[currentState].draw(g);
 	}
-	public void keyPressed(int k)
-	{
+	
+	public void keyPressed(int k) {
 		gameStates[currentState].keyPressed(k);
 	}
-	public void keyReleased(int k)
-	{
+	
+	public void keyReleased(int k) {
 		gameStates[currentState].keyReleased(k);
 	}
 	

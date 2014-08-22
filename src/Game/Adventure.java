@@ -6,7 +6,7 @@ class Adventure
 {
 	public static void main(String[] args)
 	{
-		JFrame window = new JFrame("AdventureSomething");
+		JFrame window = new JFrame("Game-Mark-1");
 		window.setContentPane(new GamePanel());
 		
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
